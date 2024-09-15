@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TicketVending.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicketVending"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="768"
+        x:Class="TicketVending.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="TicketVending">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Gray" BorderThickness="3">
+            <Grid ColumnDefinitions="*,Auto,Auto" Margin="3">
+                <Grid>
+                    <TextBlock Grid.Column="" FontSize="24" Margin="10,5"
+                               VerticalAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{} {0} ({1})&#x0a; {2} {3}">
+                                <Binding Source="{local:Loc Key=Greeting}"/>
+                                <Binding Source="{local:Loc Key=MachineName}"/>
+                                <Binding Source="{local:Loc Key=Zone}"/>
+                                <Binding Source="{local:Loc Key=ZoneId}"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <Button Grid.Column="0" FontSize="24" HorizontalAlignment="Right">
+                        <TextBlock FontSize="24" Margin="10,5"
+                                   VerticalAlignment="Center">
+                            <TextBlock.Text>
+                                    <Binding Source="{local:Loc Key=LanguageName}"/>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Button>
+                </Grid>
+                <TextBlock Grid.Column="1" FontSize="24" Text="{Binding TimeS}" Margin="10,5"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" />
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="50">
+            <TextBlock FontSize="32">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}:">
+                        <Binding Source="{local:Loc Key=Paper}"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <StackPanel Spacing="5">
+                <Button>
+                    <TextBlock FontSize="20" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}60 {0}&#x0a;{1} A">
+                                <Binding Source="{local:Loc Key=Minutes}"/>
+                                <Binding Source="{local:Loc Key=Zone}"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Button>
+                <Button>
+                    <TextBlock FontSize="20" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}90 {0}&#x0a;{1} A">
+                                <Binding Source="{local:Loc Key=Minutes}"/>
+                                <Binding Source="{local:Loc Key=Zone}"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Button>
+                <Button>
+                    <TextBlock FontSize="20" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}1 {0}&#x0a;{1} A">
+                                <Binding Source="{local:Loc Key=Day}"/>
+                                <Binding Source="{local:Loc Key=Zone}"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- <StackPanel Grid.Row="2" Margin="50"> -->
+        <!--     <TextBlock FontSize="32" Text="{Binding Language.Electronic}" /> -->
+        <!-- </StackPanel> -->
+    </Grid>
+</Window>
